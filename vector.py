@@ -3,13 +3,14 @@ from langchain_chroma import Chroma
 from langchain_core.documents import Document
 import os
 import pandas as pd
+from langchain_community.embeddings import FastEmbedEmbeddings
 
 
 # pandas reads csv file
 df = pd.read_csv("realistic_restaurant_reviews.csv")
 
 # this model converts text to vector embeddings
-embeddings = OllamaEmbeddings(model="mxbai-embed-large")
+embeddings = FastEmbedEmbeddings(model="BAAI/bge-small-en-v1.5")
 
 db_location = "./chrome_langchain_db"
 add_documents = not os.path.exists(db_location)
